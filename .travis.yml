@@ -1,18 +1,19 @@
-gemfile:
-  - gemfiles/rails4.0.gemfile
-  - gemfiles/rails4.1.gemfile
-  - gemfiles/rails4.2.gemfile
-install:
-  - 'travis_retry bundle install'
-language:
-  - ruby
+language: ruby
 rvm:
-  - 2.0.0-p648
   - 2.1.8
   - 2.2.4
   - 2.3.0
+gemfile:
+  - gemfiles/rails_5.0.gemfile
+  - gemfiles/rails_4.2.gemfile
+  - gemfiles/rails_4.1.gemfile
+install:
+  - 'travis_retry bundle install'
 script: 'bundle exec rake spec'
 notifications:
   email: false
 sudo: false
-cache: bundler
+matrix:
+  exclude:
+    - rvm: 2.1.8
+      gemfile: gemfiles/rails_5.0.gemfile

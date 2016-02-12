@@ -7,6 +7,6 @@ describe AlternativeFinderController do
     get :show, :id => 'ebg13'
 
     expect(response).to be_success
-    expect(response).to render_template('rot13')
+    expect(response.body).to match("hello world from views/pages/rot13.html.erb")
   end
 end

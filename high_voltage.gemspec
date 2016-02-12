@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_development_dependency("activesupport", ">= 3.1.0")
+  s.add_development_dependency("appraisal", "~> 2.1")
   s.add_development_dependency("pry")
-  s.add_development_dependency("rspec-rails", "~> 3.2.0")
+  s.add_development_dependency("rspec-rails")
 end

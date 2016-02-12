@@ -8,12 +8,12 @@ describe SubclassedPagesController do
 
     it 'responds with success and render template' do
       expect(response).to be_succes
-      expect(response).to render_template('also_exists')
+      expect(response.body).to match("hello world from views/pages/also_exists.html.erb")
     end
 
     it 'uses the custom configured layout' do
-      expect(response).not_to render_template('layouts/application')
-      expect(response).to render_template('layouts/alternate')
+      expect(response.body).not_to match('Application Layout')
+      expect(response.body).to match('Alternate Layout')
     end
   end
 

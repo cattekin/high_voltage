@@ -11,11 +11,11 @@ describe HighVoltage::PagesController do
 
       it "responds with success and render template" do
         expect(response).to be_success
-        expect(response).to render_template("exists")
+        expect(response.body).to match("hello world from views/pages/exists.html.erb")
       end
 
       it "uses the default layout used by ApplicationController" do
-        expect(response).to render_template("layouts/application")
+        expect(response.body).to match("Application Layout")
       end
     end
 
@@ -24,7 +24,7 @@ describe HighVoltage::PagesController do
 
       it "responds with success and render template" do
         expect(response).to be_success
-        expect(response).to render_template("pages/dir/nested")
+        expect(response.body).to match("hello world from views/pages/dir/nested.html.erb")
       end
     end
 
@@ -53,8 +53,8 @@ describe HighVoltage::PagesController do
       before { get :show, id: "exists" }
 
       it "uses the custom configured layout" do
-        expect(response).not_to render_template("layouts/application")
-        expect(response).to render_template("layouts/alternate")
+        expect(response.body).not_to match("Application Layout")
+        expect(response.body).to match("Alternate Layout")
       end
     end
   end
@@ -70,7 +70,7 @@ describe HighVoltage::PagesController do
 
       it "responds with success and render template" do
         expect(response).to be_success
-        expect(response).to render_template("other_pages/also_exists")
+        expect(response.body).to match("hello world from views/other_pages/also_exists.html.erb")
       end
     end
 
@@ -79,7 +79,7 @@ describe HighVoltage::PagesController do
 
       it "responds with success and render template" do
         expect(response).to be_success
-        expect(response).to render_template("other_pages/also_dir/also_nested")
+        expect(response.body).to match("hello world from views/other_pages/also_dir/also_nested.html.erb")
       end
     end
 
